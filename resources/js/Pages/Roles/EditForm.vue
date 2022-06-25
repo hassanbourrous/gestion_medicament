@@ -2,10 +2,10 @@
     <jig-tabs :class="`border-none`" nav-classes="bg-secondary-300 rounded-t-lg border-b-4 border-primary">
         <template #nav>
             <jig-tab-link @activate="setTab" :active-classes="tabActiveClasses" :tab-controller="activeTab"
-                          tab="basic-info">Basic Info
+                          tab="basic-info">informations de role
             </jig-tab-link>
             <jig-tab-link @activate="setTab" :active-classes="tabActiveClasses" :tab-controller="activeTab"
-                          tab="assign-permissions">Assign Permissions
+                          tab="assign-permissions">affecter Permissions
             </jig-tab-link>
         </template>
         <template #content>

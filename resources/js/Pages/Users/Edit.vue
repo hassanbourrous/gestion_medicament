@@ -7,7 +7,7 @@
             </div>
         </template>
         <div class="flex flex-wrap px-4">
-            <div class="z-10 flex-auto max-w-2xl p-4 mx-auto bg-white md:rounded-md md:shadow-md">
+            <div class="z-10 flex-auto p-4 mx-auto bg-white md:rounded-md md:shadow-md">
                 <edit-users-form :roles="roles" :model="model" :establishments="establishments" @success="onSuccess" @error="onError"/>
             </div>
         </div>

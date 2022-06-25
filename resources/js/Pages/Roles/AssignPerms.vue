@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="font-black text-xl mb-2 flex flex-wrap justify-between items-center">
-            <h2 class="">Assign Permissions</h2>
+            <h2 class="">affecter des Permissions</h2>
             <div>
                 <inertia-button class="bg-green-500" type="button" @click.native.prevent="toggleAll(true)">Assign All</inertia-button>
                 <inertia-button class="bg-red-500 text-white" type="button" @click.native.prevent="toggleAll(false)">Revoke All</inertia-button>
