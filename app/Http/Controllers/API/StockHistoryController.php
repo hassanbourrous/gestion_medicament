@@ -32,9 +32,7 @@ class StockHistoryController  extends Controller
     public function index(IndexStockHistory $request)
     {
         $query = StockHistory::query(); // You can extend this however you want.
-        if(!\Auth::user()->hasRole("administrator")){
-            $query->whereIn('esta_id' ,\Auth::user()->establishments->pluck('id')->toArray()  );
-        }
+       
         $cols = [
             Column::name('id')->title('Id')->sort()->searchable(),
             Column::name('type')->title('Type')->sort()->searchable(),
@@ -51,7 +49,9 @@ class StockHistoryController  extends Controller
 
     public function dt(Request $request) {
         $query = StockHistory::query()->select(StockHistory::getModel()->getTable().'.*'); // You can extend this however you want.
-        
+        if(!\Auth::user()->hasRole("administrator")){
+            $query->join('stocks', "stock_history.stock_id" , "=" , "stocks.id" )->whereIn('stocks.esta_id',\Auth::user()->establishments->pluck('id')->toArray()  );
+        }
         $query = $this->repo::applayFiltters($query , $request);
        
         return $this->repo::dt($query);

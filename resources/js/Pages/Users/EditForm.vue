@@ -2,14 +2,14 @@
     <jig-tabs :class="`border-none`" nav-classes="bg-secondary-300 rounded-t-lg border-b-4 border-primary">
         <template #nav>
             <jig-tab-link @activate="activeTab=$event" :active-classes="tabActiveClasses" :tab-controller="activeTab"
-                          tab="basic-info">Basic Info
+                          tab="basic-info">information d'utilisateur
             </jig-tab-link>
             <jig-tab-link @activate="activeTab=$event" :active-classes="tabActiveClasses" :tab-controller="activeTab"
-                          tab="assign-roles">Assign Roles
+                          tab="assign-roles">effectuer le rôle
             </jig-tab-link>
             
             <jig-tab-link @activate="activeTab=$event" :active-classes="tabActiveClasses" :tab-controller="activeTab"
-                          tab="assign-establishments">Assign Establishments
+                          tab="assign-establishments">affecter à une établissement .
             </jig-tab-link>
         </template>
         <template #content>
@@ -82,7 +82,7 @@
             </jig-tab>
             <jig-tab name="assign-roles" :tab-controller="activeTab">
                 <div class="my-2 border rounded-md p-3">
-                    <h3 class="font-bold py-3 text-lg">Assign Roles</h3>
+                    <h3 class="font-bold py-3 text-lg">affecter une Roles</h3>
                     <hr>
                     <div class="p-2 mt-2 border rounded">
                         <div style="cursor: pointer" v-for="(role, idx) of form.assigned_roles" :key="idx"
