@@ -1,0 +1,246 @@
+<template>
+    <jig-layout>
+        <template #header>
+            <div class="flex flex-wrap items-center justify-between w-full px-4">
+                <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back</inertia-link>
+                <div class="flex gap-x-2">
+                    <inertia-button v-if="can.create" :href="route('admin.medicaments.create')" classes="bg-green-100 hover:bg-green-200 text-primary"><i class="fas fa-plus"></i> New
+                        Medicament</inertia-button>
+                    <inertia-button @click.native="$refreshDt(tableId)" classes="bg-indigo-100 hover:bg-green-200 text-indigo"><i class="fas fa-redo"></i> Refresh</inertia-button>
+                </div>
+            </div>
+        </template>
+        <div v-if="can.viewAny" class="flex flex-wrap px-4">
+            <div class="z-10 flex-auto bg-white md:rounded-md md:shadow-md">
+                <h3 class="w-full p-4 text-lg font-black sm:rounded-t-lg bg-primary-100"><i class="mr-2 fas fa-bars"></i>
+                    List of All Medicaments
+                    <button style="margin-top: -5px;" type="button" @click="expandFilters()"
+                        class="float-right pl-2 pt-1 pb-1 pr-1 bg-primary text-white rounded hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out" >
+                        <i class="mr-2 fas fa-filter"></i> 
+                    </button>
+                </h3>
+                
+                <div class="p-4 transition-all bg-indigo-50 " v-if="filters_expanded" >
+                    <form @submit.prevent="submmitFilters">
+                        <div class="flex">
+                            <div class="flex-1 mr-2">
+                                <div class=" w-full max-w-md">
+                                    <jet-label for="category" value="Category" />
+                                    <infinite-select :per-page="15" :api-url="route('api.categories.index')" @option:selected="selectedCategoryFilter" 
+                                                    id="category" name="category" v-model="tableParamsForm.category" label="name"
+                                    ></infinite-select>
+                                </div>
+                            </div>
+                            <div class="flex-1 mr-2">
+                                <div class="flex">
+                                    <div class="flex-1 mr-2">
+                                        <div class="w-full max-w-md">
+                                            <jet-label for="ref" > Ref </jet-label>
+                                            <jet-input class="w-full" type="text" id="ref" name="ref" v-model="tableParamsForm.ref"></jet-input>
+                                        </div>
+                                    </div>
+                                    <div class=" flex-1 mr-8">
+                                        <div class="w-full max-w-xs">
+                                            <jet-label for="ref_condition" value="Condition" />
+                                            <select class="w-full cost_select" v-model="tableParamsForm.ref_condition"  id="ref_condition" name="ref_condition">
+                                                <option value="equal">Égale &#61;</option>
+                                                <option value="contain">Contenir *</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- submmitFilters  reset-->
+                            <div class="flex-none">
+                                <inertia-button type="button" class="mt-4 mr-4 text-white font-semibold bg-success disabled:opacity-25" @click="ResetFillters()">Reset</inertia-button>
+                                <inertia-button type="submit" class="mt-4 mr-14 text-white font-semibold bg-primary disabled:opacity-25">Submit</inertia-button>
+                            </div>  
+                        </div>
+                    </form>
+                </div>
+
+                <div class="p-4">
+                    <dt-component
+                        :table-id="tableId"
+                        :ajax-url="ajaxUrl"
+                        :columns="columns"
+                        :ajax-params="tableParams"
+                        @show-model="showModel"
+                        @edit-model="editModel"
+                        @delete-model="confirmDeletion"
+                    />
+                </div>
+                <jet-confirmation-modal title="Confirm Deletion" :show="confirmDelete">
+                    <template v-slot:content>
+                        <div>Are you sure you want to delete this record?</div>
+                    </template>
+                    <template v-slot:footer>
+                        <div class="flex justify-end gap-x-2">
+                            <inertia-button as="button" type="button" @click.native.stop="cancelDelete" class="bg-red-500">Cancel</inertia-button>
+                            <inertia-button as="button" type="button" @click.native.prevent="deleteModel" class="bg-green-500">Yes, Delete</inertia-button>
+                        </div>
+                    </template>
+                </jet-confirmation-modal>
+                <div v-if="showModal && currentModel">
+                    <jig-modal
+                        :show="showModal"
+                        corner-class="rounded-lg"
+                        position-class="align-middle"
+                        @close="currentModel = null; showModal = false">
+
+                        <template #title>Show Medicament #{{currentModel.id}}</template>
+                        <show-medicaments-form :model="currentModel"></show-medicaments-form>
+                        <template #footer>
+                            <inertia-button class="px-4 text-white bg-primary" @click="showModal = false; currentModel = null">Close</inertia-button>
+                        </template>
+                    </jig-modal>
+                </div>
+            </div>
+        </div>
+        <div v-else class="p-4 font-bold text-red-500 bg-red-100 rounded-md shadow-md ">
+            You are not authorized to view a list of Medicaments
+        </div>
+    </jig-layout>
+</template>
+
+<script>
+    import JigLayout from "@/Layouts/JigLayout.vue";
+    import JetConfirmationModal from "@/Jetstream/ConfirmationModal.vue";
+    import JetDialogModal from "@/Jetstream/DialogModal.vue";
+    import InertiaButton from "@/JigComponents/InertiaButton.vue";
+    import JigToggle from "@/JigComponents/JigToggle.vue";
+    import JigModal from "@/JigComponents/JigModal.vue";
+    import DtComponent from "@/JigComponents/DtComponent.vue";
+    import DisplayMixin from "@/Mixins/DisplayMixin.js";
+    import ShowMedicamentsForm from "@/Pages/Medicaments/ShowForm.vue";
+    import { defineComponent } from "vue";
+    import {useForm} from "@inertiajs/inertia-vue3";
+    import JetLabel from "@/Jetstream/Label.vue";
+    import InfiniteSelect from '@/JigComponents/InfiniteSelect.vue';
+    import JetInput from "@/Jetstream/Input.vue";
+
+    export default defineComponent({
+        name: "Index",
+        components: {
+            DtComponent,
+            JigToggle,
+            InertiaButton,
+            JetConfirmationModal,
+            JetDialogModal,
+            JigModal,
+            JigLayout,
+            ShowMedicamentsForm,
+            JetLabel,
+            InfiniteSelect,
+            JetInput,
+        },
+        props: {
+            can: Object,
+            columns: Array,
+        },
+        inject: ["$refreshDt","$dayjs"],
+        data() {
+            return {
+                tableId: 'medicaments-dt',
+                tableParams: {
+                    "category_id": null,
+                    "ref" : null,
+                    "ref_condition" : null
+                },
+                datatable: null,
+                confirmDelete: false,
+                currentModel: null,
+                withDisabled: false,
+                showModal: false,
+                filters_expanded: false,
+                tableParamsForm: useForm({
+                    "category": null,
+                    "ref" : null,
+                    "ref_condition" : "equal"
+                }, {remember: false}),
+            }
+        },
+        mixins: [
+            DisplayMixin,
+        ],
+        mounted() {
+        },
+        computed: {
+            ajaxUrl() {
+                const url = new URL(this.route('api.medicaments.dt'));
+                /*if (this.withDisabled) {
+                    url.searchParams.append('include-disabled',true);
+                }*/
+                return url.href;
+            }
+        },
+        methods: {
+            showModel(model) {
+                axios.get(route('api.medicaments.show',model)).then(res => {
+                    this.currentModel = res.data.payload;
+                    this.showModal = true;
+                })
+                // this.$inertia.visit(this.route('admin.medicaments.show',model.id));
+            },
+            editModel(model) {
+                this.$inertia.visit(this.route('admin.medicaments.edit',model.id));
+            },
+            expandFilters(){
+                this.filters_expanded = ! this.filters_expanded;
+            },
+            confirmDeletion(model) {
+                this.currentModel = model;
+                this.confirmDelete = true;
+            },
+            cancelDelete() {
+                this.currentModel = false;
+                this.confirmDelete = false;
+            },
+            async deleteModel() {
+                const vm = this;
+                this.confirmDelete = false;
+                if (this.currentModel) {
+                    this.$inertia.delete(route('admin.medicaments.destroy', vm.currentModel),{
+                        onFinish: res => {
+                            this.displayNotification('success', "Item deleted.");
+                            vm.$refreshDt(vm.tableId);
+                        },
+                        onError: err => {
+                            console.log(err);
+                            this.displayNotification('error', "There was an error while deleting the item.");
+                        }
+                    });
+                }
+            },
+            async toggleActivation(enabled,model) {
+                const vm = this;
+                axios.put(route(`api.medicaments.update`,model.id),{
+                    enabled: enabled
+                }).then(res => {
+                    this.displayNotification('success', res.data.message);
+                    this.$refreshDt(this.tableId);
+                })
+            },
+            selectedCategoryFilter(){
+                this.tableParams.category_id = this.tableParamsForm.category ? this.tableParamsForm.category.id : null;
+                this.$refreshDt(this.tableId);
+            },
+            submmitFilters(){
+                this.tableParams.category_id = this.tableParamsForm.category ? this.tableParamsForm.category.id : null;
+                this.tableParams.ref = this.tableParamsForm.ref ? this.tableParamsForm.ref : null;
+                this.tableParams.ref_condition = this.tableParamsForm.ref_condition ? this.tableParamsForm.ref_condition : null;
+                this.$refreshDt(this.tableId);
+            },
+            ResetFillters(){
+                this.tableParamsForm.category = null;
+                this.tableParamsForm.ref = null;
+                this.tableParamsForm.ref_condition = "equal";
+                this.submmitFilters();
+            }
+        }
+    });
+</script>
+
+<style scoped>
+
+</style>

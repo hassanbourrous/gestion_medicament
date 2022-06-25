@@ -1,0 +1,126 @@
+{
+    "dashboard": {
+        "route": "admin.dashboard",
+        "routePattern": "admin.dashboard",
+        "permissionName": "dashboard",
+        "title": "Tableau de bord",
+        "faIcon": "fas fa-tv",
+        "isTitle": false,
+        "isParent": false,
+        "ignorePerm": true,
+        "children": []
+    },
+    "stocks": {
+        "route": "admin.stocks.index",
+        "title": "Stocks",
+        "routePattern": "admin.stocks.*",
+        "faIcon": "fas fa-boxes",
+        "isTitle": false,
+        "isParent": false,
+        "children": []
+    },
+    "stock-histories": {
+        "route": "admin.stock-histories.index",
+        "title": "Historique des stocks",
+        "routePattern": "admin.stock-histories.*",
+        "faIcon": "fas fa-history",
+        "isTitle": false,
+        "isParent": false,
+        "children": []
+    },
+    "regions": {
+        "route": "admin.regions.index",
+        "title": "Régions",
+        "routePattern": "admin.regions.*",
+        "faIcon": "fas fa-map-signs",
+        "isTitle": false,
+        "isParent": false,
+        "children": []
+    },
+    "establishments": {
+        "route": "admin.establishments.index",
+        "title": "Établissements",
+        "routePattern": "admin.establishments.*",
+        "faIcon": "fas fa-building",
+        "isTitle": false,
+        "isParent": false,
+        "children": []
+    },
+    "detainees": {
+        "route": "admin.detainees.index",
+        "title": "Détenus",
+        "routePattern": "admin.detainees.*",
+        "faIcon": "fas fa-user-clock",
+        "isTitle": false,
+        "isParent": false,
+        "children": []
+    },
+    "medicaments": {
+        "route": "admin.medicaments.index",
+        "title": "Médicaments",
+        "routePattern": "admin.medicaments.*",
+        "faIcon": "fas fa-pills",
+        "isTitle": false,
+        "isParent": false,
+        "children": []
+    },
+    "categories": {
+        "route": "admin.categories.index",
+        "title": "Catégories",
+        "routePattern": "admin.categories.*",
+        "faIcon": "fas fa-bookmark",
+        "isTitle": false,
+        "isParent": false,
+        "children": []
+    },
+    "stock-statuses": {
+        "route": "admin.stock-statuses.index",
+        "title": "État des stocks",
+        "routePattern": "admin.stock-statuses.*",
+        "faIcon": "fas fa-exclamation",
+        "isTitle": false,
+        "isParent": false,
+        "children": []
+    },
+    "users": {
+        "title": "Gestion des utilisateurs",
+        "faIcon": "fas fa-users-cog",
+        "route": "admin.users.index",
+        "routePattern": "admin.users.*",
+        "isTitle": true,
+        "isParent": true,
+        "ignorePerm": false,
+        "children": {
+            "users": {
+                "route": "admin.users.index",
+                "title": "Utilisateurs",
+                "routePattern": "admin.users.*",
+                "faIcon": "fas fa-users",
+                "isTitle": false,
+                "isParent": false,
+                "ignorePerm": false,
+                "children": []
+            },
+            "roles": {
+                "route": "admin.roles.index",
+                "title": "Les rôles",
+                "routePattern": "admin.roles.*",
+                "faIcon": "fas fa-award",
+                "isTitle": false,
+                "isParent": false,
+                "ignorePerm": false,
+                "children": []
+            },
+            "permissions": {
+                "route": "admin.permissions.index",
+                "title": "Autorisations",
+                "routePattern": "admin.permissions.*",
+                "faIcon": "fas fa-fingerprint",
+                "isTitle": false,
+                "isParent": false,
+                "ignorePerm": false,
+                "children": []
+            }
+        }
+    }
+}
