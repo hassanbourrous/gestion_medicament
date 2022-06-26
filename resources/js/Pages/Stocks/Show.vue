@@ -7,7 +7,7 @@
                 <inertia-link
                     :href="route('admin.stocks.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> Back | Details of Stock
+                ><i class="fas fa-arrow-left"></i> Retour | Détails de Stock
                     #{{ model.id }}</inertia-link>
             </div>
         </template>

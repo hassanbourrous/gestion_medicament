@@ -7,7 +7,7 @@
                 <inertia-link
                     :href="route('admin.detainees.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> Back | Details of Detainee
+                ><i class="fas fa-arrow-left"></i> Retour | Détails de Détenu
                     #{{ model.id }}</inertia-link>
             </div>
         </template>

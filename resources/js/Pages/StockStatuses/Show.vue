@@ -7,7 +7,7 @@
                 <inertia-link
                     :href="route('admin.stock-statuses.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> Back | Details of Stock Status
+                ><i class="fas fa-arrow-left"></i> Retour | Détails de Stock Status
                     #{{ model.id }}</inertia-link>
             </div>
         </template>

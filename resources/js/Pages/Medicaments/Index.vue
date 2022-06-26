@@ -2,10 +2,9 @@
     <jig-layout>
         <template #header>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
-                <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back</inertia-link>
+                <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Retour</inertia-link>
                 <div class="flex gap-x-2">
-                    <inertia-button v-if="can.create" :href="route('admin.medicaments.create')" classes="bg-green-100 hover:bg-green-200 text-primary"><i class="fas fa-plus"></i> New
-                        Medicament</inertia-button>
+                    <inertia-button v-if="can.create" :href="route('admin.medicaments.create')" classes="bg-green-100 hover:bg-green-200 text-primary"><i class="fas fa-plus"></i> Nouveau Médicament</inertia-button>
                     <inertia-button @click.native="$refreshDt(tableId)" classes="bg-indigo-100 hover:bg-green-200 text-indigo"><i class="fas fa-redo"></i> Refresh</inertia-button>
                 </div>
             </div>
@@ -13,7 +12,7 @@
         <div v-if="can.viewAny" class="flex flex-wrap px-4">
             <div class="z-10 flex-auto bg-white md:rounded-md md:shadow-md">
                 <h3 class="w-full p-4 text-lg font-black sm:rounded-t-lg bg-primary-100"><i class="mr-2 fas fa-bars"></i>
-                    List of All Medicaments
+                    List des Médicaments
                     <button style="margin-top: -5px;" type="button" @click="expandFilters()"
                         class="float-right pl-2 pt-1 pb-1 pr-1 bg-primary text-white rounded hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out" >
                         <i class="mr-2 fas fa-filter"></i> 

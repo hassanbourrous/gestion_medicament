@@ -2,21 +2,21 @@
     <jig-layout>
         <template #header>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
-                <inertia-link v-if="stock" :href="route('admin.stocks.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back</inertia-link>
-                <inertia-link v-else :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back</inertia-link>
+                <inertia-link v-if="stock" :href="route('admin.stocks.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Retour</inertia-link>
+                <inertia-link v-else :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Retour</inertia-link>
                 <div class="flex gap-x-2">
                     <!-- <inertia-button v-if="can.create" :href="route('admin.stock-histories.create')" classes="bg-green-100 hover:bg-green-200 text-primary"><i class="fas fa-plus"></i> New
                         Stock History</inertia-button> -->
-                    <inertia-button @click.native="$refreshDt(tableId)" classes="bg-indigo-100 hover:bg-green-200 text-indigo my-2"><i class="fas fa-redo"></i> Refresh</inertia-button>
-                    <inertia-button :disabled="false" @click="print()" classes="bg-purple-500 hover:bg-purple-300 text-white my-2"><i class="fas fa-print"></i> Print</inertia-button>
-                    <inertia-button :disabled="false" @click="_export()" classes="bg-green-500 hover:bg-green-300 text-white my-2"><i class="far fa-file-excel"></i> Export</inertia-button>
+                    <inertia-button @click.native="$refreshDt(tableId)" classes="bg-indigo-100 hover:bg-green-200 text-indigo my-2"><i class="fas fa-redo"></i> Rafraîchir</inertia-button>
+                    <inertia-button :disabled="false" @click="print()" classes="bg-purple-500 hover:bg-purple-300 text-white my-2"><i class="fas fa-print"></i> Imprimer</inertia-button>
+                    <inertia-button :disabled="false" @click="_export()" classes="bg-green-500 hover:bg-green-300 text-white my-2"><i class="far fa-file-excel"></i> Exporter</inertia-button>
                 </div>
             </div>
         </template>
         <div v-if="can.viewAny" class="flex flex-wrap px-4">
             <div class="w-full z-10 flex-auto bg-white md:rounded-md md:shadow-md" >
                 <h3 class="w-full p-4  text-lg font-black sm:rounded-t-lg bg-primary-100">
-                    <i class="mr-2 fas fa-bars"></i> List of All Stock Histories 
+                    <i class="mr-2 fas fa-bars"></i> List des historique des stocks
                     <inertia-link v-if="stock" :href="route('admin.stocks.show' , stock.id)"  class="text-xl font-black text-primary"> > {{stock.title}}</inertia-link>
                     <button  v-if="stock" style="margin-top: -5px;"     type="button" @click="expandInfo()"
                         class="pl-2 pt-1 pb-1 pr-1  transition duration-150 ease-in-out" >
@@ -61,7 +61,7 @@
                             </div>
                             <div class="flex-1 mr-2" v-if="tableParamsForm.type == 'dr_provenance'">
                                 <div class="w-full max-w-md">
-                                    <jet-label for="region" value="Region" />
+                                    <jet-label for="region" value="Région l'expéditeur" />
                                     <infinite-select :per-page="15" :api-url="route('api.regions.index')" @option:selected="submmitFilters"
                                                     id="region" name="region"
                                                     v-model="tableParamsForm.region" label="name"
@@ -70,7 +70,8 @@
                             </div>
                             <div class="flex-1 mr-2"  v-if="tableParamsForm.type == 'etab_provenance' || tableParamsForm.type == 'etab_transfere'">
                                 <div class="w-full max-w-md">
-                                    <jet-label for="etab" value="Établissement" />
+                                    <jet-label v-if="tableParamsForm.type == 'etab_provenance' " for="etab" value="Établissement l'expéditeur" />
+                                    <jet-label v-if="tableParamsForm.type == 'etab_transfere'" for="etab" value="Établissement destinataire" />
                                     <infinite-select :per-page="15" :api-url="route('api.establishments.index')" :queryParams="{'all':true,'deferent_then' : tableParamsForm.estum ? tableParamsForm.estum.id  : null}"
                                                     id="etab" name="etab" :reaictivo="true" @option:selected="submmitFilters"
                                                     v-model="tableParamsForm.etab" label="name"

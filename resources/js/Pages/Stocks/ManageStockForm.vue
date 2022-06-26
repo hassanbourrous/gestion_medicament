@@ -36,7 +36,7 @@
 
         <!-- STOCK HISTPRY -->
         <div class="mt-3 sm:col-span-4" v-if="form.type == 'dr_provenance'">
-            <jet-label for="region" value="Region" />
+            <jet-label for="region" value="Région l'expéditeur" />
             <infinite-select :per-page="15" :api-url="route('api.regions.index')"
                              id="region" name="region"
                              v-model="form.region" label="name"
@@ -46,7 +46,8 @@
         </div>
 
         <div class="mt-3 sm:col-span-4"  v-if="form.type == 'etab_provenance' || form.type == 'etab_transfere'">
-            <jet-label for="etab" value="Établissement" />
+            <jet-label v-if="form.type == 'etab_provenance' " for="etab" value="Établissement l'expéditeur" />
+            <jet-label v-if="form.type == 'etab_transfere'" for="etab" value="Établissement destinataire" />
             <infinite-select :per-page="15" :api-url="route('api.establishments.index')" :queryParams="{'all':true,'deferent_then' : form.estum ? form.estum.id  : null}"
                              id="etab" name="etab" :reaictivo="true"
                              v-model="form.etab" label="name"

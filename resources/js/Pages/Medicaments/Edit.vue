@@ -2,8 +2,7 @@
     <jig-layout>
         <template #header>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
-                <inertia-link :href="route('admin.medicaments.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back | Edit
-                    Medicament #{{model.id}}</inertia-link>
+                <inertia-link :href="route('admin.medicaments.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Retour | Éditer Médicament #{{model.id}}</inertia-link>
             </div>
         </template>
         <div class="flex flex-wrap px-4">

@@ -2,8 +2,7 @@
     <jig-layout>
         <template #header>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
-                <inertia-link :href="route('admin.detainees.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back | Edit
-                    Detainee #{{model.id}}</inertia-link>
+                <inertia-link :href="route('admin.detainees.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Retour | Éditer Détenu #{{model.id}}</inertia-link>
             </div>
         </template>
         <div class="flex flex-wrap px-4">

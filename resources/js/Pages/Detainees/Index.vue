@@ -2,7 +2,7 @@
     <jig-layout>
         <template #header>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
-                <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back</inertia-link>
+                <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Retour</inertia-link>
                 <div class="flex gap-x-2">
                     <inertia-button v-if="can.create" :href="route('admin.detainees.create')" classes="bg-green-100 hover:bg-green-200 text-primary"><i class="fas fa-plus"></i> Nouveau Détenu</inertia-button>
                     <inertia-button @click.native="$refreshDt(tableId)" classes="bg-indigo-100 hover:bg-green-200 text-indigo"><i class="fas fa-redo"></i> Refresh</inertia-button>

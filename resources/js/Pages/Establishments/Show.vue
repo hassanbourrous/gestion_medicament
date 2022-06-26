@@ -7,7 +7,7 @@
                 <inertia-link
                     :href="route('admin.establishments.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> Back | Details of Establishment
+                ><i class="fas fa-arrow-left"></i> Retour | Détails de Établissement
                     #{{ model.id }}</inertia-link>
             </div>
         </template>
