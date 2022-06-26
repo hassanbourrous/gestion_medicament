@@ -2,12 +2,11 @@
     <jig-layout>
         <template #header>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
-                <inertia-link :href="route('admin.users.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back | Edit
-                    User #{{model.id}}</inertia-link>
+                <inertia-link :href="route('admin.users.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back | Edit User #{{model.id}}</inertia-link>
             </div>
         </template>
         <div class="flex flex-wrap px-4">
-            <div class="z-10 flex-auto max-w-2xl p-4 mx-auto bg-white md:rounded-md md:shadow-md">
+            <div class="z-10 flex-auto p-4 mx-auto bg-white md:rounded-md md:shadow-md">
                 <edit-users-form :roles="roles" :model="model" :establishments="establishments" @success="onSuccess" @error="onError"/>
             </div>
         </div>

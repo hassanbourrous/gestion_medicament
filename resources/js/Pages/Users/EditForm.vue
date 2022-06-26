@@ -2,14 +2,14 @@
     <jig-tabs :class="`border-none`" nav-classes="bg-secondary-300 rounded-t-lg border-b-4 border-primary">
         <template #nav>
             <jig-tab-link @activate="activeTab=$event" :active-classes="tabActiveClasses" :tab-controller="activeTab"
-                          tab="basic-info">information d'utilisateur
+                          tab="basic-info">Information d'utilisateur
             </jig-tab-link>
             <jig-tab-link @activate="activeTab=$event" :active-classes="tabActiveClasses" :tab-controller="activeTab"
-                          tab="assign-roles">effectuer le rôle
+                          tab="assign-roles">Effectuer le rôle
             </jig-tab-link>
             
             <jig-tab-link @activate="activeTab=$event" :active-classes="tabActiveClasses" :tab-controller="activeTab"
-                          tab="assign-establishments">affecter à une établissement .
+                          tab="assign-establishments">Affecter à une établissement .
             </jig-tab-link>
         </template>
         <template #content>

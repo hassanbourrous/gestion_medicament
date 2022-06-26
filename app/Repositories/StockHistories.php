@@ -159,6 +159,10 @@ class StockHistories
         if($estum_id){
             $query->join('stocks' , "stock_history.stock_id" , "=" , "stocks.id");
             $query->where('stocks.esta_id' ,"=",$estum_id);
+        }else{
+            if(!\Auth::user()->hasRole("administrator")){
+                $query->join('stocks', "stock_history.stock_id" , "=" , "stocks.id" )->whereIn('stocks.esta_id',\Auth::user()->establishments->pluck('id')->toArray()  );
+            }
         }
 
         //Medicament Etab Fillter
