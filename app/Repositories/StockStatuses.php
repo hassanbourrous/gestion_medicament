@@ -50,16 +50,18 @@ class StockStatuses
         $columns = [
             Column::make('id')->title('ID')->className('all text-right'),
             Column::make("name")->className('all'),
-            Column::make("color")->className('min-desktop-lg'),
-            Column::make("period")->className('min-desktop-lg'),
-            Column::make('actions')->className('min-desktop text-right')->orderable(false)->searchable(false),
+            Column::make("color")->className('all min-desktop-lg')->orderable(false)->searchable(false),
+            Column::make("period")->className('all min-desktop-lg'),
+            Column::make('actions')->className('all min-desktop text-right')->orderable(false)->searchable(false),
         ];
         return $columns;
     }
     public static function dt($query) {
         return DataTables::of($query)
-            ->editColumn('color' , function(StockStatus $model){
-                return '<span class="p-2 text-white rounded-lg '.$model->color.'">'.$model->color.'</span>';
+            ->editColumn('color' , function (StockStatus $model){
+                if($model->color){
+                    return '<span class="border-gray-300 border p-2 px-4 focus:ring-0 focus:outline-none text-white" style="background-color:'.$model->color.'" title="color" ></span>';
+                }
             })
             ->editColumn('actions', function (StockStatus $model) {
                 $actions = '';

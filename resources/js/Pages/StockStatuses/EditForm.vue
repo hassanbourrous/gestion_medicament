@@ -1,20 +1,21 @@
 <template>
     <form @submit.prevent="updateModel">
-                 <div class=" sm:col-span-4">
+         
+        <div class=" sm:col-span-4">
             <jet-label for="name" value="Name" />
             <jet-input class="w-full" type="text" id="name" name="name" v-model="form.name"
                        :class="{'border-red-500 sm:focus:border-red-300 sm:focus:ring-red-100': form.errors.name}"
             ></jet-input>
             <jet-input-error :message="form.errors.name" class="mt-2" />
         </div>
-                 <div class=" sm:col-span-4">
+         
+        <div class=" sm:col-span-4">
             <jet-label for="color" value="Color" />
-            <jet-input class="w-full" type="text" id="color" name="color" v-model="form.color"
-                       :class="{'border-red-500 sm:focus:border-red-300 sm:focus:ring-red-100': form.errors.color}"
-            ></jet-input>
+            <color-picker v-model:pureColor="form.color" format="hex" />
             <jet-input-error :message="form.errors.color" class="mt-2" />
         </div>
-                <div class=" sm:col-span-4">
+        
+        <div class=" sm:col-span-4">
             <jet-label for="period" value="Period" />
             <jet-input class="w-full" type="number" id="period" name="period" v-model="form.period"
                        :class="{'border-red-500 sm:focus:border-red-300 sm:focus:ring-red-100': form.errors.period}"
@@ -33,9 +34,10 @@
     import InertiaButton from "@/JigComponents/InertiaButton.vue";
     import JetInputError from "@/Jetstream/InputError.vue";
     import {useForm} from "@inertiajs/inertia-vue3";
-        import JetInput from "@/Jetstream/Input.vue";
-        
+    import JetInput from "@/Jetstream/Input.vue";
     import { defineComponent } from "vue";
+    import { ColorPicker } from "vue3-colorpicker";
+    import "vue3-colorpicker/style.css"
 
     export default defineComponent({
         name: "EditStockStatusForm",
@@ -47,7 +49,7 @@
             JetLabel,
             JetInputError,
             JetInput,
-                                                
+            ColorPicker,                            
         },
         data() {
             return {

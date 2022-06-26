@@ -38,9 +38,9 @@ class SeedInitData extends Seeder
             DB::transaction(function () use ($user) {
                 $stock_status = DB::table('stock_status')->count('*');
                 if ($stock_status == 0) {
-                    $obj1 = DB::table('stock_status')->insertGetId([ "name" => "Périmé" , "color" => "bg-red-500" , "period" => 0]);
-                    $obj2 = DB::table('stock_status')->insertGetId([ "name" => "Proche périmé" , "color" => "bg-yellow-500" , "period" => 6]);
-                    $obj3 = DB::table('stock_status')->insertGetId([ "name" => "Normal" , "color" => "bg-green-500" , "period" => 7]);
+                    $obj1 = DB::table('stock_status')->insertGetId([ "name" => "Périmé" , "color" => "#d81b43" , "period" => 0]);
+                    $obj2 = DB::table('stock_status')->insertGetId([ "name" => "Proche périmé" , "color" => "#e64a19" , "period" => 6]);
+                    $obj3 = DB::table('stock_status')->insertGetId([ "name" => "Normal" , "color" => "#05a045" , "period" => 7]);
                 }
             });
         } else {

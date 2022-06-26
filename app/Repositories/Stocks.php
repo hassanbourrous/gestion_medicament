@@ -154,14 +154,14 @@ class Stocks
                     $diff = 0;
                 foreach($stock_status as $st){
                     if($diff <= $st->period){
-                        return '<span class="p-2 text-white rounded-lg '.$st->color.' ">'.$st->name.'['.$diff.']</span>';
+                        return '<span class="p-2 text-white rounded-lg " style="background-color:'.$st->color.'">'.$st->name.'['.$diff.']</span>';
                     }
                 }
                 if($diff>0 && $model->quantite <=0){
                     return '<span class="p-2 text-white rounded-lg bg-pink-500 "> No Stock</span>';
                 }
                 $last_ss = $stock_status->last();
-                return '<span class="p-2 text-white rounded-lg '.$last_ss->color.' ">'.$last_ss->name.'['.$diff.']</span>';
+                return '<span class="p-2 text-white rounded-lg" style="background-color:'.$last_ss->color.'">'.$last_ss->name.'['.$diff.']</span>';
             })
             ->addColumn('Etablissement' , function(Stock $model){
                 // if($model->estum)

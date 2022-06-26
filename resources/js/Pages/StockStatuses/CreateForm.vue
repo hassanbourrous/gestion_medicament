@@ -11,9 +11,7 @@
             
         <div class=" sm:col-span-4">
             <jet-label for="color" value="Color" />
-            <jet-input class="w-full" type="text" id="color" name="color" v-model="form.color"
-                       :class="{'border-red-500 sm:focus:border-red-300 sm:focus:ring-red-100': form.errors.color}"
-            ></jet-input>
+            <color-picker v-model:pureColor="form.color" format="hex" />
             <jet-input-error :message="form.errors.color" class="mt-2" />
         </div>
             
@@ -38,6 +36,8 @@
     import JetInputError from "@/Jetstream/InputError.vue"
     import {useForm} from "@inertiajs/inertia-vue3";
     import { defineComponent } from "vue";
+    import { ColorPicker } from "vue3-colorpicker";
+    import "vue3-colorpicker/style.css"
 
     export default defineComponent({
         name: "CreateStockStatusesForm",
@@ -45,7 +45,8 @@
             InertiaButton,
             JetInputError,
             JetLabel,
-                         JetInput,                                    
+            JetInput,
+            ColorPicker,
         },
         data() {
             return {
@@ -53,7 +54,6 @@
                     name: null,
                     color: null,
                     period: null,
-                                                            
                 }, {remember: false}),
             }
         },
