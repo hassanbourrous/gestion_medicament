@@ -56,7 +56,7 @@
         </div>
         
         <div class="mt-3 sm:col-span-4" v-if="form.type == 'consommation'">
-            <jet-label for="detaine" value="Detaine" />
+            <jet-label for="detaine" value="Detenu" />
             <infinite-select :per-page="15" :api-url="route('api.detainees.index')" :queryParams="{'selected_etab' : form.estum ? form.estum.id  : null}"
                              id="detaine" name="detaine" :reaictivo="true"
                              v-model="form.detaine" label="title"
