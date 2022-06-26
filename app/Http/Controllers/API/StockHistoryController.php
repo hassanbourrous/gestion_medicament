@@ -49,9 +49,7 @@ class StockHistoryController  extends Controller
 
     public function dt(Request $request) {
         $query = StockHistory::query()->select(StockHistory::getModel()->getTable().'.*'); // You can extend this however you want.
-        if(!\Auth::user()->hasRole("administrator")){
-            $query->join('stocks', "stock_history.stock_id" , "=" , "stocks.id" )->whereIn('stocks.esta_id',\Auth::user()->establishments->pluck('id')->toArray()  );
-        }
+        
         $query = $this->repo::applayFiltters($query , $request);
        
         return $this->repo::dt($query);
