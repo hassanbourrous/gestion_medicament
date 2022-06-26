@@ -7,7 +7,7 @@
                 <inertia-link
                     :href="route('admin.users.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> Back | Details of User
+                ><i class="fas fa-arrow-left"></i> Retour | Détails de Utilisateur
                     #{{ model.id }}</inertia-link>
             </div>
         </template>

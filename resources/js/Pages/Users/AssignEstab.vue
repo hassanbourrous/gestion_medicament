@@ -3,8 +3,8 @@
         <div class="font-black text-xl mb-2 flex flex-wrap justify-between items-center">
             <h2 class="">effectuer une etablissment</h2>
             <div>
-                <inertia-button class="bg-green-500" type="button" @click.native.prevent="toggleAll(true)">Assign All</inertia-button>
-                <inertia-button class="bg-red-500 text-white" type="button" @click.native.prevent="toggleAll(false)">Revoke All</inertia-button>
+                <inertia-button class="bg-green-500" type="button" @click.native.prevent="toggleAll(true)">Attribuer tout</inertia-button>
+                <inertia-button class="bg-red-500 text-white" type="button" @click.native.prevent="toggleAll(false)">Révoquer tout</inertia-button>
             </div>
         </div>
         <hr>
@@ -13,8 +13,8 @@
                 <div class="flex flex-wrap">
                     <h3 class="font-black text-xl pb-2">{{region}}</h3>
                     <div class="">
-                        <inertia-button @click.native.prevent="togglerRegionEstabs(estabs,true)" class="bg-green-500 py-1 mx-1 text-sm">Assign</inertia-button>
-                        <inertia-button @click.native.prevent="togglerRegionEstabs(estabs,false)" class="bg-red-500 py-1 mx-1 text-sm">Revoke</inertia-button>
+                        <inertia-button @click.native.prevent="togglerRegionEstabs(estabs,true)" class="bg-green-500 py-1 mx-1 text-sm">Attribuer</inertia-button>
+                        <inertia-button @click.native.prevent="togglerRegionEstabs(estabs,false)" class="bg-red-500 py-1 mx-1 text-sm">Révoquer</inertia-button>
                     </div>
                 </div>
                 <div style="cursor: pointer" v-for="(estab, idx) of estabs" :key="idx" class=" sm:col-span-4 px-10 flex border-b border-gray-100 py-3 items-center my-2 text-gray-600">

@@ -4,7 +4,7 @@
             <div class="flex flex-wrap items-center justify-between w-full px-4">
                 <inertia-link :href="route('admin.stock-statuses.index')"
                               class="text-xl font-black text-white"><i
-                        class="fas fa-arrow-left"></i> Back | New Stock Status
+                        class="fas fa-arrow-left"></i> Retour | Nouveau Stock Status
                 </inertia-link>
             </div>
         </template>

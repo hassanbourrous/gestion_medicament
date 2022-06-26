@@ -7,7 +7,7 @@
                 <inertia-link
                     :href="route('admin.permissions.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> Back | Details of Permission
+                ><i class="fas fa-arrow-left"></i> Retour | Détails de Permission
                     #{{ model.id }}</inertia-link>
             </div>
         </template>

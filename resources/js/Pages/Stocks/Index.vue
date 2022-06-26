@@ -2,15 +2,15 @@
     <jig-layout>
         <template #header>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
-                <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Back</inertia-link>
+                <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> Retour</inertia-link>
                 <div class="flex gap-x-2">
                     <inertia-button v-if="can.create" @click="manageAllStocks(null)" classes="bg-pink-500 hover:bg-pink-200 text-white my-2 mr-0"><i class="fas fa-boxs"></i> Gérer les stocks</inertia-button>
                     <inertia-button v-if="can.create" :href="route('admin.stocks.create')" classes="bg-pink-500 hover:bg-pink-200 text-white my-2 ml-0 rounded-r-lg" 
                                     style="margin-left: -15px;border-radius:0 0.5rem 0.5rem 0 !important"><i class="fas fa-share-square"></i></inertia-button>
                     <!-- <inertia-button v-if="can.create" :href="route('admin.stocks.create')" classes="bg-green-100 hover:bg-green-200 text-primary m-2"><i class="fas fa-plus"></i> Nouveau stock</inertia-button> -->
-                    <inertia-button @click.native="$refreshDt(tableId)" classes="bg-indigo-100 hover:bg-green-200 text-indigo my-2"><i class="fas fa-redo"></i> Refresh</inertia-button>
-                    <inertia-button :disabled="false" @click="print()" classes="bg-purple-500 hover:bg-purple-300 text-white my-2"><i class="fas fa-print"></i> Print</inertia-button>
-                    <inertia-button :disabled="false" @click="_export()" classes="bg-green-500 hover:bg-green-300 text-white my-2"><i class="far fa-file-excel"></i> Export</inertia-button>
+                    <inertia-button @click.native="$refreshDt(tableId)" classes="bg-indigo-100 hover:bg-green-200 text-indigo my-2"><i class="fas fa-redo"></i> Rafraîchir</inertia-button>
+                    <inertia-button :disabled="false" @click="print()" classes="bg-purple-500 hover:bg-purple-300 text-white my-2"><i class="fas fa-print"></i> Imprimer</inertia-button>
+                    <inertia-button :disabled="false" @click="_export()" classes="bg-green-500 hover:bg-green-300 text-white my-2"><i class="far fa-file-excel"></i> Exporter</inertia-button>
                 </div>
 
             </div>
@@ -18,7 +18,7 @@
         <div v-if="can.viewAny" class="flex flex-wrap px-4">
             <div class="w-full z-10 flex-auto bg-white md:rounded-md md:shadow-md">
                 <h3 class="w-full p-4 text-lg font-black sm:rounded-t-lg bg-primary-100">
-                    <i class="mr-2 fas fa-bars"></i> List of All Stocks
+                    <i class="mr-2 fas fa-bars"></i> List des Stocks
                     <button style="margin-top: -5px;" class="float-right pl-2 pt-1 pb-1 pr-1 bg-primary 0 text-white rounded hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out" 
                         type="button" @click="expandFilters()">
                         <i class="mr-2 fas fa-filter"></i> 

@@ -7,7 +7,7 @@
                 <inertia-link
                     :href="route('admin.roles.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> Back | Details of Role
+                ><i class="fas fa-arrow-left"></i> Retour | Détails de Role
                     #{{ model.id }}</inertia-link>
             </div>
         </template>

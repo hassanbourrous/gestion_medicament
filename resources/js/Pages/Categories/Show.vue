@@ -7,7 +7,7 @@
                 <inertia-link
                     :href="route('admin.categories.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> Back | Details of Category
+                ><i class="fas fa-arrow-left"></i> Retour | Détails de Catégorie
                     #{{ model.id }}</inertia-link>
             </div>
         </template>
