@@ -162,7 +162,7 @@
                                     <th class="p-4 px-6 text-xs text-left whitespace-no-wrap align-middle border-t-0 border-l-0 border-r-0">
                                         {{sh.type}}
                                     </th>
-                                    <td class="p-4 px-6 text-xs whitespace-no-wrap align-middle border-t-0 border-l-0 border-r-0">
+                                    <td v-if="sh.stock" class="p-4 px-6 text-xs whitespace-no-wrap align-middle border-t-0 border-l-0 border-r-0">
                                         {{sh.stock.title}}
                                     </td>
                                     <td class="p-4 px-6 text-xs whitespace-no-wrap align-middle border-t-0 border-l-0 border-r-0">
