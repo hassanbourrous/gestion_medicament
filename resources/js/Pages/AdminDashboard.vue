@@ -178,7 +178,7 @@
                                         <span v-if ="sh.type == 'consommation' && sh.detaine ">
                                             {{sh.detaine.title}}
                                         </span>
-                                        <span v-if ="sh.type != 'consommation' && sh.type != 'etab_provenance' && sh.type != 'etab_transfere' && sh.type != 'dr_provenance' && sh.stock.estum ">
+                                        <span v-if ="sh.type != 'consommation' && sh.type != 'etab_provenance' && sh.type != 'etab_transfere' && sh.type != 'dr_provenance' && sh.stock && sh.stock.estum ">
                                             {{sh.stock.estum.name}}
                                         </span>
                                     </td>
